@@ -4,4 +4,3 @@ numpy
 pandas
 streamlit
 xgboost
-iqoptionapi==0.5
