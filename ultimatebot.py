@@ -23,7 +23,7 @@ stop_loss = st.sidebar.number_input("Stop Loss (USD)", min_value=1.0, value=50.0
 
 # Carregar modelo treinado com Joblib
 st.sidebar.write("Carregando o modelo...")
-modelo = joblib.load('layamodel2.pkl')
+modelo = joblib.load(r'layamodel2.pkl')
 
 # Inicializar variáveis de controle
 conectado = False
@@ -42,7 +42,7 @@ def conectar_iq_option(email, senha, escolha):
             return False
         else:
             st.success("Conectado com sucesso à IQ Option!")
-            # Escolher escolha de conta (demo ou real)
+            # Escolher tipo de conta (demo ou real)
             conta = 'PRACTICE' if escolha == 'demo' else 'REAL'
             API.change_balance(conta)
             st.sidebar.write(f"Conectado à conta {conta}")
