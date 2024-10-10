@@ -4,4 +4,4 @@ numpy
 pandas
 streamlit
 xgboost
-git+https://github.com/Lu-Yi-Hsun/iqoptionapi.git
+git+https://github.com/iqoptionapi/iqoptionapi.git
