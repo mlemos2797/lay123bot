@@ -14,8 +14,9 @@ st.sidebar.header("Configurações")
 # Definir variáveis de configuração através da interface
 email = st.sidebar.text_input("Email IQ Option", value="seu_email@example.com")
 senha = st.sidebar.text_input("Senha IQ Option", type="password")
+tipo = st.sidebar.selectbox("Tipo de Conta", ['digital', 'binarias'])
 ativo = st.sidebar.text_input("Ativo (Ex: EURUSD)", value="EURUSD")
-tipo = st.sidebar.selectbox("Tipo de Conta", ['demo', 'real'])
+escolha = st.sidebar.selectbox("Tipo de Conta", ['demo', 'real'])
 valor_entrada = st.sidebar.number_input("Valor de Entrada (USD)", min_value=1.0, value=10.0)
 stop_win = st.sidebar.number_input("Stop Win (USD)", min_value=1.0, value=100.0)
 stop_loss = st.sidebar.number_input("Stop Loss (USD)", min_value=1.0, value=50.0)
@@ -30,7 +31,7 @@ lucro_total = 0
 stop = True
 
 # Função para conectar à API do IQ Option (executada ao clicar no botão)
-def conectar_iq_option(email, senha, tipo):
+def conectar_iq_option(email, senha, escolha):
     global API, conectado
     try:
         API = IQ_Option(email, senha)
@@ -41,8 +42,8 @@ def conectar_iq_option(email, senha, tipo):
             return False
         else:
             st.success("Conectado com sucesso à IQ Option!")
-            # Escolher tipo de conta (demo ou real)
-            conta = 'PRACTICE' if tipo == 'demo' else 'REAL'
+            # Escolher escolha de conta (demo ou real)
+            conta = 'PRACTICE' if escolha == 'demo' else 'REAL'
             API.change_balance(conta)
             st.sidebar.write(f"Conectado à conta {conta}")
             conectado = True
@@ -153,5 +154,5 @@ def estrategia_sorosgale(ativo, modelo, tipo):
 
 # Botão para conectar e iniciar a estratégia
 if st.button('Iniciar Estratégia'):
-    if conectar_iq_option(email, senha, tipo):
+    if conectar_iq_option(email, senha, escolha):
         estrategia_sorosgale(ativo, modelo, tipo)
