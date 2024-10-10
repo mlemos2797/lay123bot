@@ -22,7 +22,7 @@ stop_loss = st.sidebar.number_input("Stop Loss (USD)", min_value=1.0, value=50.0
 
 # Carregar modelo treinado com Joblib
 st.sidebar.write("Carregando o modelo...")
-modelo = joblib.load(r'C:\Users\miguel.lemos\Documents\CFI\Miguel\Robot Iq Option\layamodel2.pkl')
+modelo = joblib.load('layamodel2.pkl')
 
 # Inicializar variáveis de controle
 conectado = False
